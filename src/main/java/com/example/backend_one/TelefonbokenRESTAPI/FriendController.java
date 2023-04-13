@@ -1,5 +1,6 @@
 package com.example.backend_one.TelefonbokenRESTAPI;
 
+import com.example.backend_one.BookRESTAPI.Book;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,6 +30,13 @@ public class FriendController {
         return kompisList.stream().filter(kom -> kom.getId() == id).findFirst().orElse(null);
     }*/
 
+    @RequestMapping("/friends/{id}/delete")
+    public List<Friend> deleteFriendByID(@PathVariable int id) {
+        //removeIf kan man använda direkt på listor för att ändra dem
+        kompisList.removeIf(k -> k.getId() == id);
+        return kompisList;
+    }
+
 }
 
 /*
@@ -50,4 +58,12 @@ den av dina vänner som har det id:t
 • Om du inte har instansvariabeln id sedan innan i din Kompis-klass, lägg till den nu
 • I mån av tid, gör en getFriendByName som tar ett namn, säker igenom Kompis-listan och
 skriver ut alla uppgifter för den Kompis som har angivet namn
+ */
+
+/*
+Uppgift 5 – Telefonboken som Web Service (radera kompis)
+• Implementera deleteFriendByID i din applikation
+• http://localhost:8080/kompis/5/delete
+• Tar bort kompis med id=5
+• Testa att angiven kompis verkligen tas bortu
  */
