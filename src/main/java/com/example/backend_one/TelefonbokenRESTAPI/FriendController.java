@@ -41,7 +41,6 @@ public class FriendController {
         return kompisList;
     }
 
-
     //curl -X PUT http://localhost:8080/friends/update -H "Content-Type:application/json" -d "{\"id\":7, \"namn\":\"Marius\", \"smeknamn\":\"Violin\", \"birthday\":\"01-01-1225\", \"telefonnummerLista\": [\"765623896\", \"762214853\"], \"adressLista\": [\"Mediterranean Island 100\"]}" -v
     @PutMapping("/friends/update")
     public List<Friend> updateFriend(@RequestBody Friend f) {

@@ -14,23 +14,9 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 @RestController
 public class FriendHATEOASController {
 
-
-    //private final EmployeeRepository repository;
-
-    //FriendModelAssembler assembler = new FriendModelAssembler();
-
     KompisDAO kompisDao = new KompisDAO();
     List<Friend> kompisList = kompisDao.getKompisList();
 
-    //private final EmployeeRepository repository;
-/*
-    private final FriendModelAssembler assembler;
-
-    FriendHATEOASController(KompisDAO kompisDao, FriendModelAssembler assembler) {
-
-        this.kompisDao = kompisDao;
-        this.assembler = assembler;
-    }*/
 
     @GetMapping("/friendsHATEOAS/{id}")
     EntityModel<Friend> one(@PathVariable Long id) {
