@@ -97,8 +97,8 @@ Uppgift 6 – Telefonboken som Web Service (lägg till kompis, post)
  */
 
 /*
-Uppgift 7 – Telefonboken som Web Service (update kompis, post)
-• Skriv en ”update”-metod.
+Uppgift 7 – Telefonboken som Web Service (upsert kompis, post)
+• Skriv en ”upsert”-metod.
 • Den ska ta emot ett Kompis-objekt.
 • Om en Kompis med samma id som inparameterns id finns ska den befintliga Kompisen
 uppdateras.

@@ -22,10 +22,10 @@ public class BookController {
         return bookList.stream().filter(b -> b.getId() == id).findFirst().orElse(null);
     }
 
-
+    //visa bestämda böcker
     @RequestMapping("/books/{fromid}/{toid}")
-    public List<Book> getBookByIdRange(@PathVariable int toid, @PathVariable int fromid) {
-        return bookList.stream().filter(b -> b.getId() >= fromid && b.getId() <= toid).toList();
+    public List<Book> getBookByIdRange(@PathVariable int toId, @PathVariable int fromId) {
+        return bookList.stream().filter(b -> b.getId() >= fromId && b.getId() <= toId).toList();
     }
 
     //ta bort en bok
