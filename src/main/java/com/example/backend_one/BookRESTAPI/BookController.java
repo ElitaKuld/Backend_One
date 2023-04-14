@@ -36,6 +36,8 @@ public class BookController {
         return bookList;
     }
 
+    //Parameter kan ta in mellanrum
+    //http://localhost:8080/books/addByGET?id=8&title=Persuasion&author=Jane%20Austen
     @RequestMapping("/books/addByGET")
     public List<Book> addByGET(@RequestParam int id,
                                @RequestParam String title, @RequestParam String author) {
@@ -43,12 +45,14 @@ public class BookController {
         return bookList;
     }
 
+    //curl http://localhost:8080/books/add -H "Content-Type:application/json" -d "{\"id\":9, \"title\":\"Pippi Langstrump\", \"author\":\"Astrid Lindgren\"}" -v
     @PostMapping("/books/add")
     public List<Book> addBookByPOST(@RequestBody Book b) {
         bookList.add(b);
         return bookList;
     }
 
+    //curl -X PUT http://localhost:8080/books/update -H "Content-Type:application/json" -d "{\"id\":10, \"title\":\"Sense and Sensibility\", \"author\":\"Jane Austen\"}" -v
     @PutMapping("/books/update")
     public List<Book> updateBook(@RequestBody Book b) {
         Book bookToUpdate = bookList.stream()

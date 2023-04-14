@@ -1,9 +1,7 @@
 package com.example.backend_one.TelefonbokenRESTAPI;
 
 import com.example.backend_one.BookRESTAPI.Book;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Objects;
@@ -37,6 +35,29 @@ public class FriendController {
         return kompisList;
     }
 
+    //curl http://localhost:8080/friends/add -H "Content-Type:application/json" -d "{\"id\":6, \"namn\":\"Robin\", \"smeknamn\":\"Hood\", \"birthday\":\"12-12-1990\", \"telefonnummerLista\": [\"762654897\", \"762365894\"], \"adressLista\": [\"Sherwood Forest 10\"]}" -v
+    @PostMapping("/friends/add")
+    public List<Friend> addFriendByPOST(@RequestBody Friend f) {
+        kompisList.add(f);
+        return kompisList;
+    }
+
+    //curl http://localhost:8080/friends/update -H "Content-Type:application/json" -d "{\"id\":7, \"namn\":\"Marius\", \"smeknamn\":\"Violin\", \"birthday\":\"01-01-1225\", \"telefonnummerLista\": [\"765623896\", \"762214853\"], \"adressLista\": [\"Mediterranean Island 100\"]}" -v
+    @PutMapping("/books/update")
+    public List<Friend> updateFriend(@RequestBody Friend f) {
+        Friend friendToUpdate = kompisList.stream()
+                .filter(friend -> friend.getId() == f.getId()).findFirst().orElse(null);
+        if (friendToUpdate == null) {
+            kompisList.add(f);
+        } else {
+            friendToUpdate.setNamn(f.getNamn());
+            friendToUpdate.setSmeknamn(f.getSmeknamn());
+            friendToUpdate.setBirthday(f.getBirthday());
+            friendToUpdate.setTelefonnummerLista(f.getTelefonnummerLista());
+            friendToUpdate.setAdressLista(f.getAdressLista());
+        }
+        return kompisList;
+    }
 }
 
 /*
@@ -65,5 +86,23 @@ Uppgift 5 – Telefonboken som Web Service (radera kompis)
 • Implementera deleteFriendByID i din applikation
 • http://localhost:8080/kompis/5/delete
 • Tar bort kompis med id=5
-• Testa att angiven kompis verkligen tas bortu
+• Testa att angiven kompis verkligen tas bort
+ */
+
+/*
+Uppgift 6 – Telefonboken som Web Service (lägg till kompis, post)
+• Installera Postman (eller använd dig av curl-kommandot)
+• Gör en POST-funktion till din KompisController för att lägga till fler vänner
+• Kolla med curl att allt funkar som det ska
+ */
+
+/*
+Uppgift 7 – Telefonboken som Web Service (update kompis, post)
+• Skriv en ”update”-metod.
+• Den ska ta emot ett Kompis-objekt.
+• Om en Kompis med samma id som inparameterns id finns ska den befintliga Kompisen
+uppdateras.
+• Om inget objekt med samma id finns ska en ny Kompis skapas och läggas till i listan.
+• Kolla att det funkar bra att posta in nya kompisar med Postman eller med curl
+• Urlen kan vara …/kompis/update
  */
