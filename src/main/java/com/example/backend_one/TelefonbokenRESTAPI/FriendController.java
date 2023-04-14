@@ -1,6 +1,5 @@
 package com.example.backend_one.TelefonbokenRESTAPI;
 
-import com.example.backend_one.BookRESTAPI.Book;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
