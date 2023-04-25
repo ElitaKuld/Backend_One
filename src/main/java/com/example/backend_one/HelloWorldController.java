@@ -3,6 +3,7 @@ package com.example.backend_one;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+//Skickar ut rådata av någon sort
 @RestController
 public class HelloWorldController {
 
